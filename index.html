@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noktalama İşaretleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Başlık -->
+        <div class="app-title">
+            <h1>Noktalama İşaretleri Öğrenme Uygulaması</h1>
+        </div>
+
+        <!-- Üst Menü Butonları -->
+        <div class="top-menu">
+            <div class="menu-buttons">
+                <button class="btn btn-primary" id="addSentenceBtn">Cümle Ekle</button>
+                <button class="btn btn-primary" id="editSentenceBtn">Cümle Düzenle</button>
+                <button class="btn btn-primary" id="importBtn">İçe Aktar</button>
+                <button class="btn btn-primary" id="exportBtn">Dışa Aktar</button>
+                <button class="btn btn-danger" id="deleteBtn">Sil</button>
+            </div>
+        </div>
+
+        <!-- İlerleme Çubuğu -->
+        <div class="progress-container">
+            <div class="progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- Cümle Alanı -->
+        <div id="sentenceArea" class="sentence-area">
+            <div id="wordContainer" class="word-container">
+                <!-- Kelimeler buraya JavaScript ile eklenecek -->
+            </div>
+        </div>
+
+        <!-- Noktalama İşaretleri -->
+        <div class="marks-container">
+            <div class="mark" draggable="true">.</div>
+            <div class="mark" draggable="true">,</div>
+            <div class="mark" draggable="true">!</div>
+            <div class="mark" draggable="true">?</div>
+            <div class="mark" draggable="true">:</div>
+            <div class="mark" draggable="true">;</div>
+        </div>
+
+        <!-- Sürüklenen İşaret -->
+        <div id="draggedMark" class="dragged-mark"></div>
+
+        <!-- Kontrol Butonları -->
+        <div class="controls">
+            <button class="btn btn-primary" id="prevButton">Önceki</button>
+            <button class="btn btn-check" id="checkButton">Kontrol Et</button>
+            <button class="btn btn-primary" id="nextButton">Sonraki</button>
+        </div>
+    </div>
+
+    <!-- Cümle Ekleme Modalı -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Yeni Cümle Ekle</h2>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="newSentence">Cümle:</label>
+                    <textarea id="newSentence" placeholder="Cümleyi buraya yazın..."></textarea>
+                </div>
+                
+                <div class="rules-section">
+                    <h3>Noktalama Kuralları</h3>
+                    <div class="rules-list"></div>
+                    <button class="btn btn-add-rule" onclick="addRuleItem(addModal)">Yeni Kural Ekle</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelAdd">İptal</button>
+                <button class="btn btn-primary" id="saveNewSentence">Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cümle Düzenleme Modalı -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Cümleyi Düzenle</h2>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editSentence">Cümle:</label>
+                    <textarea id="editSentence" placeholder="Cümleyi düzenleyin..."></textarea>
+                </div>
+
+                <div class="rules-section">
+                    <h3>Noktalama Kuralları</h3>
+                    <div class="rules-list"></div>
+                    <button class="btn btn-add-rule" onclick="addRuleItem(editModal)">Yeni Kural Ekle</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelEdit">İptal</button>
+                <button class="btn btn-primary" id="saveEdit">Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kontrol Modalı -->
+    <div id="checkModal" class="modal">
+        <div class="modal-content">
+            <h2 id="checkModalTitle">Sonuç</h2>
+            <p id="checkModalMessage"></p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="closeCheckModal">Tamam</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dosya Yükleme Input'u (Gizli) -->
+    <input type="file" id="fileInput" accept=".json" style="display: none">
+
+    <script src="script.js"></script>
+</body>
+</html>
